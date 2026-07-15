@@ -265,6 +265,7 @@
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--glass-border);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
             z-index: 1000;
             padding: 1rem 0;
             transition: var(--transition);
@@ -416,7 +417,7 @@
 
         /* Hero Section */
         .hero {
-            background: #eef5ff;
+            background: #f6faff;
             color: var(--text-dark);
             padding: 7rem 0 6rem;
             position: relative;
@@ -553,108 +554,258 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
         }
 
-        /* Hero Live Widget */
+        /* Hero Live Form Widget - Premium Quick Matcher */
         .hero-widget {
-            background: white;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
-            padding: 2rem;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            border-radius: 28px;
+            box-shadow: 0 30px 60px rgba(15, 98, 254, 0.12),
+                0 2px 10px rgba(0, 0, 0, 0.03),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+            padding: 2.25rem 2rem;
             display: flex;
             flex-direction: column;
             gap: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .hero-widget::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899);
+        }
+
+        .hero-widget:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 40px 80px rgba(15, 98, 254, 0.18),
+                0 4px 20px rgba(15, 98, 254, 0.08);
         }
 
         .widget-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 1rem;
+        }
+
+        .widget-title-area {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
         }
 
         .widget-header h4 {
-            font-size: 1rem;
+            font-size: 1.25rem;
             color: var(--navy-dark);
-            font-weight: 700;
+            font-weight: 800;
             display: flex;
             align-items: center;
             gap: 0.5rem;
             margin: 0;
         }
 
-        .widget-badge {
-            font-size: 0.7rem;
-            background: #ddffdd;
-            color: #169111;
-            padding: 0.25rem 0.5rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+        .widget-header h4 i {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .widget-stats-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-        }
-
-        .stat-box {
-            border: 1px solid var(--border-color);
-            padding: 0.75rem 1rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.25rem;
-        }
-
-        .stat-value {
-            font-size: 1.35rem;
-            font-weight: 700;
-            color: var(--primary);
-        }
-
-        .stat-label {
+        .widget-subtitle {
             font-size: 0.75rem;
             color: var(--text-light);
             font-weight: 500;
         }
 
-        .widget-highlights h5 {
-            font-size: 0.85rem;
+        /* Form Tabs */
+        .widget-tabs {
+            display: flex;
+            background: rgba(15, 98, 254, 0.05);
+            padding: 0.35rem;
+            border-radius: 14px;
+            gap: 0.25rem;
+            border: 1px solid rgba(15, 98, 254, 0.08);
+        }
+
+        .widget-tab-btn {
+            flex: 1;
+            border: none;
+            background: none;
+            padding: 0.65rem;
+            border-radius: 10px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--text-medium);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+        }
+
+        .widget-tab-btn.active {
+            background: linear-gradient(135deg, var(--primary), #8b5cf6);
+            color: white;
+            box-shadow: 0 4px 14px rgba(139, 92, 246, 0.25);
+        }
+
+        /* Form Controls */
+        .quick-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .form-group label {
+            font-size: 0.75rem;
+            font-weight: 700;
             color: var(--navy-dark);
-            margin-bottom: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            font-weight: 700;
-            margin-top: 0;
         }
 
-        .phase-pills {
+        .input-wrapper {
+            position: relative;
             display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
+            align-items: center;
         }
 
-        .phase-pill {
-            font-size: 0.75rem;
-            padding: 0.35rem 0.65rem;
-            border: 1px solid var(--border-color);
-            color: var(--text-light);
-            font-weight: 600;
-        }
-
-        .phase-pill.active {
-            background: var(--primary-light);
+        .input-wrapper i.input-icon {
+            position: absolute;
+            left: 1rem;
             color: var(--primary);
-            border-color: var(--primary-light);
+            font-size: 0.95rem;
+            pointer-events: none;
         }
 
-        .widget-advisory {
-            background: #fffbeb;
-            border: 1px solid #fef3c7;
+        .input-wrapper input,
+        .input-wrapper select {
+            width: 100%;
+            padding: 0.8rem 1rem 0.8rem 2.5rem;
+            border: 1px solid rgba(15, 98, 254, 0.15);
+            border-radius: 12px;
+            font-size: 0.92rem;
+            font-weight: 550;
+            color: var(--text-dark);
+            background: white;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .input-wrapper input:focus,
+        .input-wrapper select:focus {
+            border-color: #8b5cf6;
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.12);
+            background: white;
+        }
+
+        /* Distinct Colorful Icon Colors */
+        .input-icon.icon-rank {
+            color: #3b82f6 !important;
+        }
+
+        .input-icon.icon-category {
+            color: #10b981 !important;
+        }
+
+        .input-icon.icon-gender {
+            color: #8b5cf6 !important;
+        }
+
+        .input-icon.icon-state {
+            color: #f59e0b !important;
+        }
+
+        .form-row-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        /* Live Feedback Box */
+        .live-matcher-result {
+            background: rgba(16, 185, 129, 0.06);
+            border: 1px dashed rgba(16, 185, 129, 0.3);
+            border-radius: 12px;
             padding: 0.85rem 1rem;
             font-size: 0.82rem;
-            color: #92400e;
-            line-height: 1.4;
+            color: #065f46;
+            font-weight: 600;
+            line-height: 1.45;
+            display: none;
+            align-items: flex-start;
+            gap: 0.5rem;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .live-matcher-result.info {
+            background: rgba(59, 130, 246, 0.06);
+            border-color: rgba(59, 130, 246, 0.3);
+            color: #1d4ed8;
+        }
+
+        .live-matcher-result.warning {
+            background: rgba(245, 158, 11, 0.06);
+            border-color: rgba(245, 158, 11, 0.3);
+            color: #b45309;
+        }
+
+        .live-matcher-result i {
+            margin-top: 0.15rem;
+            flex-shrink: 0;
+        }
+
+        /* Button styling */
+        .btn-predict {
+            background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+            color: white;
+            border: none;
+            padding: 0.95rem;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 14px rgba(15, 98, 254, 0.25);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .btn-predict:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(15, 98, 254, 0.35);
+        }
+
+        .btn-predict:active {
+            transform: translateY(0);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(4px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         @media (max-width: 991px) {
@@ -1777,7 +1928,7 @@
 
         .footer-grid {
             display: grid;
-            grid-template-columns: repeat(6, 1fr);
+            grid-template-columns: repeat(5, 1fr);
             gap: 1.5rem;
             margin-bottom: 4rem;
         }
@@ -1785,7 +1936,7 @@
         .footer-col h4 {
             color: var(--navy-dark);
             font-size: 1rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             font-family: var(--font-heading);
             letter-spacing: 0.5px;
         }
@@ -1795,12 +1946,12 @@
         }
 
         .footer-col ul li {
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.2rem;
         }
 
         .footer-col ul li a {
             color: var(--text-medium);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
 
         .footer-col ul li a:hover {
@@ -1820,6 +1971,23 @@
         .footer-bottom p {
             font-size: 0.85rem;
             color: var(--text-light);
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-bottom-links a {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .footer-bottom-links a:hover {
+            color: var(--primary);
         }
 
         .back-to-top {
@@ -1946,10 +2114,20 @@
                         JEE Main <i class="fas fa-chevron-down dropdown-arrow"></i>
                     </button>
                     <div class="nav-dropdown-content">
-                        <a href="/jee-main-college-predictor">JEE Main Predictor</a>
-                        <a href="/cutoffs">JEE Main Cutoffs</a>
-                        <a href="https://jeerankpredictor.com/" target="_blank">JEE Rank Predictor</a>
-                        <a href="https://jeemain.nta.ac.in/" target="_blank" rel="noopener">Official NTA Portal</a>
+                        <a href="/jee-main">JEE Main Exam</a>
+                        <a href="/jee-main/syllabus">JEE Main Sullabus</a>
+                        <a href="/jee-main/eligibility-criteria">JEE Main Eligibility</a>
+                        <a href="/jee-main/reservation">JEE Main Reservation</a>
+                        <a href="/jee-main/application-form">JEE Main Application</a>
+                        <a href="/jee-main/registration">JEE Main Registration</a>
+                        <a href="/jee-main/exam-dates">JEE Main Exam Date</a>
+                        <a href="/jee-main/admit-card">JEE Main Admit Card</a>
+                        <a href="/jee-main/result">JEE Main Result</a>
+                        <a href="/jee-main/exam-pattern">JEE Main Exam Pattern</a>
+                        <a href="/jee-main/session-2">JEE Main Session 2</a>
+                        <a href="/jee-main/cutoff">JEE Main Cutoff</a>
+                        <a href="/jee-main/answer-key">JEE Main Answer Key</a>
+
                     </div>
                 </div>
 
@@ -1959,9 +2137,18 @@
                         JEE Advanced <i class="fas fa-chevron-down dropdown-arrow"></i>
                     </button>
                     <div class="nav-dropdown-content">
-                        <a href="/jee-advanced-college-predictor">JEE Advanced Predictor</a>
-                        <a href="/cutoffs">IIT Closing Ranks</a>
-                        <a href="https://jeeadv.ac.in/" target="_blank" rel="noopener">Official JEE Advanced</a>
+                        <a href="/jee-advanced">JEE Advanced Exam</a>
+                        <a href="/jee-advanced/syllabus">JEE Advanced Sullabus</a>
+                        <a href="/jee-advanced/eligibility-criteria">JEE Advanced Eligibility</a>
+                        <a href="/jee-advanced/reservation">JEE Advanced Reservation</a>
+                        <a href="/jee-advanced/application-form">JEE Advanced Application</a>
+                        <a href="/jee-advanced/registration">JEE Advanced Registration</a>
+                        <a href="/jee-advanced/exam-dates">JEE Advanced Exam Date</a>
+                        <a href="/jee-advanced/admit-card">JEE Advanced Admit Card</a>
+                        <a href="/jee-advanced/result">JEE Advanced Result</a>
+                        <a href="/jee-advanced/exam-pattern">JEE Advanced Exam Pattern</a>
+                        <a href="/jee-advanced/cutoff">JEE Advanced Cutoff</a>
+                        <a href="/jee-advanced/answer-key">JEE Advanced Answer Key</a>
                     </div>
                 </div>
 
@@ -1971,11 +2158,13 @@
                         Counselling <i class="fas fa-chevron-down dropdown-arrow"></i>
                     </button>
                     <div class="nav-dropdown-content">
-                        <a href="/josaa-college-predictor">JoSAA counselling</a>
-                        <a href="/csab-college-predictor">CSAB Special Rounds</a>
-                        <a href="/dasa-college-predictor">DASA NRI Admissions</a>
-                        <a href="/choice-filling-templates">Choice Filling PDF</a>
-                        <a href="/documentation">Required Documents</a>
+                        <a href="/josaa-counselling">JoSAA Counselling</a>
+                        <a href="/josaa-seat-allotment">JoSAA Seat Allotment</a>
+                        <a href="/josaa-seat-matrix">JoSAA Seat Matrix</a>
+                        <a href="/josaa-counselling-schedule">JoSAA Counselling Schedule</a>
+                        <a href="/csab-counselling">CSAB Counselling</a>
+                        <a href="/dasa-counselling">DASA Counselling</a>
+
                     </div>
                 </div>
 
@@ -1985,12 +2174,14 @@
                         Predictors <i class="fas fa-chevron-down dropdown-arrow"></i>
                     </button>
                     <div class="nav-dropdown-content">
-                        <a href="#predictors-list">National Predictors</a>
-                        <a href="/reap-college-predictor">REAP Rajasthan</a>
-                        <a href="/mp-dte-college-predictor">MP DTE Counselling</a>
-                        <a href="/uptac-college-predictor">UPTAC Uttar Pradesh</a>
-                        <a href="/mht-cet-college-predictor">MHT CET Maharashtra</a>
-                        <a href="/wbjee-college-predictor">WBJEE West Bengal</a>
+                        <a href="/college-predictor">College Predictor</a>
+                        <a href="/jee-main-college-predictor">Jee Main College Predictor</a>
+                        <a href="/jee-main-rank-predictor">Jee Main Rank Predictor</a>
+                        <a href="/jee-main-percentile-predictor">Jee Main Percentile Predictor</a>
+                        <a href="/jee-advanced-college-predictor">Jee Advanced College Predictor</a>
+                        <a href="/jee-advanced-rank-predictor">Jee Advanced Rank Predictor</a>
+                        <a href="/csab-college-predictor">CSAB College Predictor</a>
+                        <a href="/dasa-college-predictor">DASA College Predictor</a>
                     </div>
                 </div>
 
@@ -2000,11 +2191,9 @@
                         Resources <i class="fas fa-chevron-down dropdown-arrow"></i>
                     </button>
                     <div class="nav-dropdown-content">
-                        <a href="#institutes">IIT Directory</a>
-                        <a href="#institutes">NIT Directory</a>
-                        <a href="#institutes">IIIT Directory</a>
-                        <a href="#institutes">GFTI Directory</a>
-                        <a href="https://tools.jeecounselling.com" target="_blank">Online Tools Portal</a>
+                        <a href="/updates">News & Updates</a>
+                        <a href="/colleges">Participating Colleges</a>
+                        <a href="/faq">FAQs</a>
                     </div>
                 </div>
             </div>
@@ -2041,44 +2230,108 @@
                     </div>
                 </div>
 
-                <!-- Premium Hero Side Widget Card -->
+                <!-- Interactive Quick College Predictor Widget -->
                 <div class="hero-widget">
                     <div class="widget-header">
-                        <h4><i class="fas fa-broadcast-tower"></i> JEE Predictor Stats</h4>
-                        <span class="widget-badge">Live</span>
-                    </div>
-                    <div class="widget-stats-grid">
-                        <div class="stat-box">
-                            <span class="stat-value">99.6%</span>
-                            <span class="stat-label">Prediction Accuracy</span>
-                        </div>
-                        <div class="stat-box">
-                            <span class="stat-value">1.2M+</span>
-                            <span class="stat-label">Aspirants Used</span>
-                        </div>
-                        <div class="stat-box">
-                            <span class="stat-value">110+</span>
-                            <span class="stat-label">IITs, NITs & IIITs</span>
-                        </div>
-                        <div class="stat-box">
-                            <span class="stat-value">2.7M+</span>
-                            <span class="stat-label">Predictions Done</span>
+                        <div class="widget-title-area">
+                            <h4><i class="fas fa-magic"></i> Instant Seat Matcher</h4>
+                            <span class="widget-subtitle">Predict admission chances in 1-click</span>
                         </div>
                     </div>
-                    <div class="widget-highlights">
-                        <h5>Counselling Phases Monitored</h5>
-                        <div class="phase-pills">
-                            <span class="phase-pill active">JoSAA 2027</span>
-                            <span class="phase-pill active">CSAB Spot</span>
-                            <span class="phase-pill">JAC Delhi</span>
-                            <span class="phase-pill">MP DTE</span>
+
+                    <!-- Tabs to switch predictors -->
+                    <div class="widget-tabs">
+                        <button type="button" class="widget-tab-btn active" id="tabJeeMain"
+                            onclick="switchPredictorTab('main')">
+                            <i class="fas fa-graduation-cap"></i> JEE Main
+                        </button>
+                        <button type="button" class="widget-tab-btn" id="tabJeeAdv"
+                            onclick="switchPredictorTab('advanced')">
+                            <i class="fas fa-award"></i> JEE Advanced
+                        </button>
+                    </div>
+
+                    <!-- Form -->
+                    <form class="quick-form" id="quickPredictorForm" onsubmit="handleQuickPrediction(event)">
+                        <!-- Rank Input -->
+                        <div class="form-group">
+                            <label for="crlRank" id="rankLabel">JEE Main CRL Rank</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-hashtag input-icon icon-rank"></i>
+                                <input type="number" id="crlRank" placeholder="Enter CRL Rank (e.g. 15420)" required
+                                    min="1" oninput="runLiveChancesEstimator()">
+                            </div>
                         </div>
-                    </div>
-                    <div class="widget-advisory">
-                        <p><i class="fas fa-exclamation-triangle"></i> <strong>Pro Tip:</strong> Arrange your choice
-                            list in strict order of preference. Once a seat is allocated, all lower-listed options are
-                            permanently deleted.</p>
-                    </div>
+
+                        <!-- Dropdowns Row -->
+                        <div class="form-row-2">
+                            <!-- Category -->
+                            <div class="form-group">
+                                <label for="crlCategory">Category</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-users input-icon icon-category"></i>
+                                    <select id="crlCategory" onchange="runLiveChancesEstimator()">
+                                        <option value="OPEN">General</option>
+                                        <option value="OBC-NCL">OBC-NCL</option>
+                                        <option value="EWS">GEN-EWS</option>
+                                        <option value="SC">SC</option>
+                                        <option value="ST">ST</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Gender -->
+                            <div class="form-group">
+                                <label for="crlGender">Gender</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-venus-mars input-icon icon-gender"></i>
+                                    <select id="crlGender" onchange="runLiveChancesEstimator()">
+                                        <option value="Gender-Neutral">Male / Neutral</option>
+                                        <option value="Female-Only">Female Only</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- State Input (Conditional, hidden for Advanced) -->
+                        <div class="form-group" id="stateFormGroup">
+                            <label for="crlState">Home State</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-map-marker-alt input-icon icon-state"></i>
+                                <select id="crlState" onchange="runLiveChancesEstimator()">
+                                    <option value="All">Select State (All India Quota)</option>
+                                    <option value="Delhi">Delhi</option>
+                                    <option value="Maharashtra">Maharashtra</option>
+                                    <option value="Rajasthan">Rajasthan</option>
+                                    <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                    <option value="West Bengal">West Bengal</option>
+                                    <option value="Bihar">Bihar</option>
+                                    <option value="Karnataka">Karnataka</option>
+                                    <option value="Tamil Nadu">Tamil Nadu</option>
+                                    <option value="Telangana">Telangana</option>
+                                    <option value="Andhra Pradesh">Andhra Pradesh</option>
+                                    <option value="Madhya Pradesh">Madhya Pradesh</option>
+                                    <option value="Gujarat">Gujarat</option>
+                                    <option value="Haryana">Haryana</option>
+                                    <option value="Punjab">Punjab</option>
+                                    <option value="Kerala">Kerala</option>
+                                    <option value="Other">Other State</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Dynamic Estimation Alert -->
+                        <div class="live-matcher-result" id="liveMatcherResult">
+                            <i class="fas fa-lightbulb"></i>
+                            <span id="liveMatcherText">Enter a valid rank to check live probability.</span>
+                        </div>
+
+                        <!-- Action Button -->
+                        <button type="submit" class="btn-predict">
+                            <span>Check All Matches</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </form>
                 </div>
             </div>
         </section>
@@ -2798,27 +3051,24 @@
         </div>
 
         <div class="footer-grid">
-            <!-- Column 1: National Predictors -->
-            <div class="footer-col">
-                <h4>Predictors</h4>
-                <ul>
-                    <li><a href="/jee-main-college-predictor">JEE Main Predictor</a></li>
-                    <li><a href="/jee-advanced-college-predictor">JEE Advanced Predictor</a></li>
-                    <li><a href="/josaa-college-predictor">JoSAA Predictor</a></li>
-                    <li><a href="/csab-college-predictor">CSAB Predictor</a></li>
-                    <li><a href="/dasa-college-predictor">DASA NRI Predictor</a></li>
-                </ul>
-            </div>
 
             <!-- Column 2: State Predictors -->
             <div class="footer-col">
                 <h4>JEE Main</h4>
                 <ul>
-                    <li><a href="/reap-college-predictor">REAP Rajasthan</a></li>
-                    <li><a href="/mp-dte-college-predictor">MP DTE Counselling</a></li>
-                    <li><a href="/uptac-college-predictor">UPTAC Uttar Pradesh</a></li>
-                    <li><a href="/mht-cet-college-predictor">MHT CET Maharashtra</a></li>
-                    <li><a href="/wbjee-college-predictor">WBJEE West Bengal</a></li>
+                    <li><a href="/jee-main">JEE Main Exam</a></li>
+                    <li><a href="/jee-main/syllabus">JEE Main Sullabus</a></li>
+                    <li><a href="/jee-main/eligibility-criteria">JEE Main Eligibility</a></li>
+                    <li><a href="/jee-main/reservation">JEE Main Reservation</a></li>
+                    <li><a href="/jee-main/application-form">JEE Main Application</a></li>
+                    <li><a href="/jee-main/registration">JEE Main Registration</a></li>
+                    <li><a href="/jee-main/exam-dates">JEE Main Exam Date</a></li>
+                    <li><a href="/jee-main/admit-card">JEE Main Admit Card</a></li>
+                    <li><a href="/jee-main/result">JEE Main Result</a></li>
+                    <li><a href="/jee-main/exam-pattern">JEE Main Exam Pattern</a></li>
+                    <li><a href="/jee-main/session-2">JEE Main Session 2</a></li>
+                    <li><a href="/jee-main/cutoff">JEE Main Cutoff</a></li>
+                    <li><a href="/jee-main/answer-key">JEE Main Answer Key</a></li>
                 </ul>
             </div>
 
@@ -2826,11 +3076,19 @@
             <div class="footer-col">
                 <h4>JEE Advanced</h4>
                 <ul>
-                    <li><a href="https://jeerankpredictor.com/" target="_blank">JEE Rank Predictor</a></li>
-                    <li><a href="https://tools.jeecounselling.com" target="_blank">Online Tools Portal</a></li>
-                    <li><a href="/choice-filling-templates">Choice Filling PDF</a></li>
-                    <li><a href="/cutoffs">Previous Year Cutoffs</a></li>
-                    <li><a href="/documentation">Required Documents</a></li>
+                    <li><a href="/jee-advanced">JEE Advanced Exam</a></li>
+                    <li><a href="/jee-advanced/syllabus">JEE Advanced Sullabus</a></li>
+                    <li><a href="/jee-advanced/eligibility-criteria">JEE Advanced Eligibility</a></li>
+                    <li><a href="/jee-advanced/reservation">JEE Advanced Reservation</a></li>
+                    <li><a href="/jee-advanced/application-form">JEE Advanced Application</a></li>
+                    <li><a href="/jee-advanced/registration">JEE Advanced Registration</a></li>
+                    <li><a href="/jee-advanced/exam-dates">JEE Advanced Exam Date</a></li>
+                    <li><a href="/jee-advanced/admit-card">JEE Advanced Admit Card</a></li>
+                    <li><a href="/jee-advanced/result">JEE Advanced Result</a></li>
+                    <li><a href="/jee-advanced/exam-pattern">JEE Advanced Exam Pattern</a></li>
+                    <li><a href="/jee-advanced/session-2">JEE Advanced Session 2</a></li>
+                    <li><a href="/jee-advanced/cutoff">JEE Advanced Cutoff</a></li>
+                    <li><a href="/jee-advanced/answer-key">JEE Advanced Answer Key</a></li>
                 </ul>
             </div>
 
@@ -2838,15 +3096,31 @@
             <div class="footer-col">
                 <h4>Counselling</h4>
                 <ul>
-                    <li><a href="https://josaa.nic.in/" target="_blank" rel="noopener">JoSAA Main Site</a></li>
-                    <li><a href="https://csab.nic.in/" target="_blank" rel="noopener">CSAB Spot Rounds</a></li>
-                    <li><a href="https://jacdelhi.admissions.nic.in/" target="_blank" rel="noopener">JAC Delhi
-                            Portal</a></li>
-                    <li><a href="https://jacchandigarh.admissions.nic.in/" target="_blank" rel="noopener">JAC
-                            Chandigarh</a></li>
-                    <li><a href="https://mpdte.admissions.nic.in/" target="_blank" rel="noopener">MP DTE Portal</a></li>
+                    <li><a href="/josaa-counselling">JoSAA Counselling</a></li>
+                    <li><a href="/josaa-seat-allotment">JoSAA Seat Allotment</a></li>
+                    <li><a href="/josaa-seat-matrix">JoSAA Seat Matrix</a></li>
+                    <li><a href="/josaa-counselling-schedule">JoSAA Counselling Schedule</a></li>
+                    <li><a href="/csab-counselling">CSAB Counselling</a></li>
+                    <li><a href="/dasa-counselling">DASA Counselling</a></li>
+
                 </ul>
             </div>
+
+            <!-- Column 1: National Predictors -->
+            <div class="footer-col">
+                <h4>Predictors</h4>
+                <ul>
+                    <li><a href="/college-predictor">College Predictor</a></li>
+                    <li><a href="/jee-main-college-predictor">Jee Main College Predictor</a></li>
+                    <li><a href="/jee-main-rank-predictor">Jee Main Rank Predictor</a></li>
+                    <li><a href="/jee-main-percentile-predictor">Jee Main Percentile Predictor</a></li>
+                    <li><a href="/jee-advanced-college-predictor">Jee Advanced College Predictor</a></li>
+                    <li><a href="/jee-advanced-rank-predictor">Jee Advanced Rank Predictor</a></li>
+                    <li><a href="/csab-college-predictor">CSAB College Predictor</a></li>
+                    <li><a href="/dasa-college-predictor">DASA College Predictor</a></li>
+                </ul>
+            </div>
+
 
             <!-- Column 5: Popular Cutoffs -->
             <div class="footer-col">
@@ -2860,22 +3134,17 @@
                 </ul>
             </div>
 
-            <!-- Column 6: Support & Info -->
-            <div class="footer-col">
-                <h4>About Us</h4>
-                <ul>
-                    <li><a href="/about">About Us</a></li>
-                    <li><a href="/privacy">Privacy Policy</a></li>
-                    <li><a href="/terms">Terms & Conditions</a></li>
-                    <li><a href="/contact">Contact Support</a></li>
-                    <li><a href="/disclaimer">Disclaimer</a></li>
-                </ul>
-            </div>
         </div>
 
         <div class="footer-bottom">
-            <p>&copy; <span id="currentYear"></span> JEE Counselling. All Rights Reserved. Crafted for JEE
-                Aspirants.</p>
+            <p>&copy; <span id="currentYear"></span> JEE Counselling. All Rights Reserved.</p>
+            <div class="footer-bottom-links">
+                <a href="/about">About Us</a>
+                <a href="/privacy">Privacy Policy</a>
+                <a href="/terms">Terms & Conditions</a>
+                <a href="/contact">Contact Us</a>
+                <a href="/disclaimer">Disclaimer</a>
+            </div>
             <a href="#" class="back-to-top">Back to Top <i class="fas fa-arrow-up"></i></a>
         </div>
     </div>
@@ -2926,8 +3195,98 @@
             document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('active'));
         });
     });
+    // Quick Seat Matcher state and logic
+    let activePredictorTab = 'main';
 
+    function switchPredictorTab(tab) {
+        activePredictorTab = tab;
 
+        // Update tabs active state
+        document.getElementById('tabJeeMain').classList.toggle('active', tab === 'main');
+        document.getElementById('tabJeeAdv').classList.toggle('active', tab === 'advanced');
+
+        // Update labels and fields
+        const rankLabel = document.getElementById('rankLabel');
+        const crlInput = document.getElementById('crlRank');
+        const stateGroup = document.getElementById('stateFormGroup');
+
+        if (tab === 'main') {
+            rankLabel.textContent = 'JEE Main CRL Rank';
+            crlInput.placeholder = 'Enter Main CRL Rank (e.g. 15420)';
+            stateGroup.style.display = 'block';
+        } else {
+            rankLabel.textContent = 'JEE Advanced CRL Rank';
+            crlInput.placeholder = 'Enter Adv CRL Rank (e.g. 3500)';
+            stateGroup.style.display = 'none';
+        }
+
+        // Re-estimate probabilities
+        runLiveChancesEstimator();
+    }
+
+    function runLiveChancesEstimator() {
+        const rankVal = parseInt(document.getElementById('crlRank').value);
+        const categoryVal = document.getElementById('crlCategory').value;
+        const genderVal = document.getElementById('crlGender').value;
+        const stateVal = document.getElementById('crlState').value;
+        const resultPanel = document.getElementById('liveMatcherResult');
+        const resultText = document.getElementById('liveMatcherText');
+
+        if (isNaN(rankVal) || rankVal <= 0) {
+            resultPanel.style.display = 'none';
+            return;
+        }
+
+        resultPanel.style.display = 'flex';
+        resultPanel.className = 'live-matcher-result'; // reset classes
+
+        // Simple mock calculations based on standard cutoffs
+        if (activePredictorTab === 'main') {
+            if (rankVal <= 8000) {
+                resultPanel.classList.add('info');
+                resultText.innerHTML = `🔥 <strong>Excellent Rank!</strong> 99% chance for Top NIT CS/IT (Trichy, Surathkal, Rourkela) and top IIITs.`;
+            } else if (rankVal <= 25000) {
+                resultText.innerHTML = `✨ <strong>Very High Chances!</strong> Probable CS/ECE branches in mid-tier NITs and premium IIITs (Allahabad, Gwalior).`;
+            } else if (rankVal <= 60000) {
+                resultPanel.classList.add('warning');
+                resultText.innerHTML = `👍 <strong>Good Chances!</strong> Probable core branches in NITs, or premium core/CS branches in state level options.`;
+            } else {
+                resultPanel.classList.add('warning');
+                resultText.innerHTML = `✅ <strong>Moderate Chances:</strong> Highly probable matches in newer NITs/IIITs and Top GFTIs. Try state-specific rounds.`;
+            }
+        } else {
+            // Advanced
+            if (rankVal <= 1500) {
+                resultPanel.classList.add('info');
+                resultText.innerHTML = `🔥 <strong>Superb Rank!</strong> Sure seat in Top 5 IITs (Bombay, Delhi, Madras) in premium core branches.`;
+            } else if (rankVal <= 6000) {
+                resultText.innerHTML = `✨ <strong>Strong Chance!</strong> Highly probable matches in top 10 IITs (Kharagpur, Roorkee, Guwahati) across core & circuital branches.`;
+            } else if (rankVal <= 12000) {
+                resultPanel.classList.add('warning');
+                resultText.innerHTML = `👍 <strong>Eligible!</strong> Highly probable newer IITs (Ropar, Mandi, Jammu) or popular integrated dual degrees in older IITs.`;
+            } else {
+                resultPanel.classList.add('warning');
+                resultText.innerHTML = `🔍 <strong>Challenging/Niche:</strong> High chances in specialized core courses and newer dual degrees. Check previous year closing trends.`;
+            }
+        }
+    }
+
+    function handleQuickPrediction(e) {
+        e.preventDefault();
+        const rankVal = document.getElementById('crlRank').value;
+        const categoryVal = document.getElementById('crlCategory').value;
+        const genderVal = document.getElementById('crlGender').value;
+        const stateVal = document.getElementById('crlState').value;
+
+        let targetUrl = activePredictorTab === 'main' ? '/jee-main-college-predictor' : '/jee-advanced-college-predictor';
+        targetUrl += `?rank=${rankVal}&category=${categoryVal}&gender=${genderVal}`;
+        if (activePredictorTab === 'main' && stateVal !== 'All') {
+            targetUrl += `&state=${stateVal}`;
+        }
+
+        // Redirect to detailed predictor page
+        window.location.href = targetUrl;
+    }
 
     // Initialize state
     window.addEventListener('DOMContentLoaded', () => {
