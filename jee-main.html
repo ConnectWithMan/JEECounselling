@@ -512,7 +512,7 @@
 
         .quick-stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            grid-template-columns: repeat(6, 1fr);
         }
 
         .qs-item {
@@ -553,118 +553,146 @@
         }
 
         .page-layout {
-            display: grid;
-            grid-template-columns: 1fr 280px;
-            gap: 2.5rem;
-            align-items: start;
+            width: 100%;
         }
 
-        /* TOC */
-        .toc-card {
-            position: sticky;
-            top: 80px;
-            background: var(--bg-white);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-lg);
-            box-shadow: var(--card-shadow);
+        /* College Predictor Inline CTA */
+        .content-cta-card {
+            background: linear-gradient(135deg, var(--navy-dark) 0%, #0c2340 100%);
+            border-radius: 24px;
+            padding: 3rem 2.5rem;
+            color: white;
+            position: relative;
             overflow: hidden;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 2rem;
+            align-items: center;
+            margin: 3rem 0;
+            box-shadow: 0 20px 40px rgba(3, 15, 38, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
-        .toc-header {
-            background: linear-gradient(135deg, var(--navy-dark), #0d2260);
-            padding: 1rem 1.2rem;
+        .content-cta-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(15, 98, 254, 0.25) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .cta-card-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            margin-bottom: 1rem;
+            letter-spacing: 0.05em;
+        }
+
+        .content-cta-card h3 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 0.75rem;
+            font-family: var(--font-heading);
+        }
+
+        .content-cta-card p {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 600px;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .cta-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .cta-actions .btn {
+            padding: 0.85rem 1.75rem;
+            font-size: 0.95rem;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+
+        .btn-cta {
+            background: linear-gradient(135deg, #00f2fe, #0f62fe);
+            color: white;
+            border: none;
+            box-shadow: 0 4px 15px rgba(15, 98, 254, 0.35);
+        }
+
+        .btn-cta:hover {
+            background: linear-gradient(135deg, #00d2df, #004dcf);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(15, 98, 254, 0.5);
+        }
+
+        .btn-cta-outline {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        .btn-cta-outline:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .cta-card-visual {
+            font-size: 5.5rem;
+            color: rgba(255, 255, 255, 0.05);
             display: flex;
             align-items: center;
-            gap: 0.6rem;
-        }
-
-        .toc-header h3 {
-            color: white;
-            font-size: 0.92rem;
-            margin: 0;
-        }
-
-        .toc-header i {
-            color: var(--accent);
-            font-size: 0.85rem;
-        }
-
-        .toc-list {
-            list-style: none;
-            padding: 0.75rem 0;
-        }
-
-        .toc-list li a {
-            display: block;
-            padding: 0.45rem 1.2rem;
-            font-size: 0.82rem;
-            color: var(--text-medium);
-            border-left: 3px solid transparent;
-        }
-
-        .toc-list li a:hover,
-        .toc-list li a.active {
-            color: var(--primary);
-            border-left-color: var(--primary);
-            background: var(--primary-light);
-        }
-
-        .toc-num {
-            display: inline-block;
-            width: 18px;
-            height: 18px;
-            background: var(--primary-light);
-            color: var(--primary);
-            border-radius: 50%;
-            font-size: 0.68rem;
-            font-weight: 700;
-            line-height: 18px;
-            text-align: center;
-            margin-right: 0.5rem;
-        }
-
-        .sidebar-cta {
-            background: linear-gradient(135deg, var(--primary), #0056d6);
-            border-radius: var(--radius-lg);
-            padding: 1.5rem;
-            color: white;
-            text-align: center;
-            box-shadow: var(--card-shadow);
-        }
-
-        .sidebar-cta h4 {
-            color: white;
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .sidebar-cta p {
-            font-size: 0.8rem;
-            opacity: 0.85;
-            margin-bottom: 1rem;
-            line-height: 1.5;
-        }
-
-        .btn-white {
-            background: white;
-            color: var(--primary);
-            border: none;
-            width: 100%;
             justify-content: center;
-            font-size: 0.85rem;
-            padding: 0.7rem 1rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            border-radius: var(--radius-md);
-            cursor: pointer;
-            transition: var(--transition);
-            font-weight: 600;
+            position: relative;
+            z-index: 1;
         }
 
-        .btn-white:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+        @media(max-width: 768px) {
+            .content-cta-card {
+                grid-template-columns: 1fr;
+                padding: 2.25rem 1.75rem;
+                gap: 1.5rem;
+                text-align: center;
+            }
+
+            .content-cta-card p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .cta-actions {
+                justify-content: center;
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .cta-actions .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .cta-card-visual {
+                display: none;
+            }
         }
 
         /* Info cards */
@@ -773,7 +801,10 @@
         }
 
         .table-scroll {
+            width: 100%;
             overflow-x: auto;
+            display: block;
+            -webkit-overflow-scrolling: touch;
         }
 
         .badge-status {
@@ -1371,92 +1402,21 @@
         }
 
 
-        /* Sidebar extras */
-        .sidebar-facts {
-            background: var(--bg-white);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-lg);
-            box-shadow: var(--card-shadow);
-            overflow: hidden;
-            margin-top: 1.5rem;
-        }
-
-        .sidebar-facts-header {
-            padding: 1rem 1.2rem;
-        }
-
-        .sidebar-facts-header h3 {
-            font-size: 0.92rem;
-            margin: 0;
-            color: white;
-        }
-
-        .sidebar-facts-body {
-            padding: 1.1rem;
-        }
-
-        .fact-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.82rem;
-            padding-bottom: 0.6rem;
-            border-bottom: 1px solid var(--border-color);
-            margin-bottom: 0.6rem;
-        }
-
-        .fact-row:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
-
-        .sidebar-links {
-            background: var(--bg-white);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-lg);
-            box-shadow: var(--card-shadow);
-            overflow: hidden;
-            margin-top: 1.5rem;
-        }
-
-        .sidebar-links a {
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-            padding: 0.6rem 1rem;
-            font-size: 0.82rem;
-            color: var(--text-medium);
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .sidebar-links a:last-child {
-            border-bottom: none;
-        }
-
-        .sidebar-links a:hover {
-            color: var(--primary);
-            background: var(--primary-light);
-        }
+        /* Sidebar extras removed */
 
         /* Responsive */
         @media(max-width:900px) {
-            .page-layout {
-                grid-template-columns: 1fr;
-            }
-
-            .toc-card {
-                position: relative;
-                top: 0;
-                margin-bottom: 1.5rem;
-            }
-
             .hero-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: minmax(0, 1fr);
+                gap: 2rem;
             }
 
             .hero-stats-card {
-                display: none;
+                margin-top: 1rem;
+                width: 100%;
+                max-width: 500px;
+                margin-left: auto;
+                margin-right: auto;
             }
 
             .grid-2,
@@ -1465,12 +1425,12 @@
                 grid-template-columns: 1fr 1fr;
             }
 
-            .subject-grid {
-                grid-template-columns: 1fr;
+            .quick-stats-grid {
+                grid-template-columns: repeat(3, 1fr);
             }
 
-            .paper-cards {
-                grid-template-columns: 1fr;
+            .qs-item:nth-child(3n) {
+                border-right: none;
             }
         }
 
@@ -1540,15 +1500,38 @@
             .nav-dropdown.active .dropdown-arrow {
                 transform: rotate(180deg);
             }
+
+            .subject-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .paper-cards {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media(max-width:600px) {
             .hero {
-                padding: 2.5rem 0 2rem;
+                padding: 4rem 0 3rem;
             }
 
             .hero h1 {
                 font-size: 1.9rem;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+                gap: 0.75rem;
+                width: 100%;
+            }
+
+            .hero-actions .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .hero-stats-card {
+                padding: 1.5rem;
             }
 
             .grid-2,
@@ -1569,8 +1552,36 @@
                 grid-template-columns: repeat(2, 1fr);
             }
 
+            .qs-item {
+                border-right: 1px solid var(--border-color);
+            }
+
             .qs-item:nth-child(2n) {
                 border-right: none;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            .footer-bottom-links {
+                margin-left: 0;
+                justify-content: center;
+                gap: 1rem;
+            }
+        }
+
+        @media(max-width:480px) {
+            body {
+                overflow-x: hidden;
             }
         }
     </style>
@@ -1795,8 +1806,10 @@
                                 conducted by the <strong>National Testing Agency (NTA)</strong> for admission to
                                 undergraduate engineering programs (B.E./B.Tech), architecture (B.Arch), and planning
                                 (B.Planning) at <strong>NITs, IIITs, GFTIs</strong> and other centrally funded technical
-                                institutions across India. It also serves as the qualifying examination for <strong>JEE
-                                    Advanced</strong>, which leads to the prestigious IITs.</p>
+                                institutions across India. It also serves as the qualifying examination for <strong><a
+                                        href="/jee-advanced"
+                                        style="color: var(--primary); font-weight: 600; text-decoration: underline;">JEE
+                                        Advanced</a></strong>, which leads to the prestigious IITs.</p>
                             <p style="font-size:.9rem;color:var(--text-medium);line-height:1.75;margin-bottom:1.25rem;">
                                 JEE Main 2027 will be conducted in <strong>two sessions</strong> — Session 1 in
                                 <strong>January 2027</strong> and Session 2 in <strong>April 2027</strong>. Candidates
@@ -1823,7 +1836,9 @@
                             </div>
                             <div class="highlight-box note" style="margin-top:1rem;"><i class="fas fa-lightbulb"></i>
                                 <p><strong>Score validity:</strong> JEE Main 2027 score is valid only for the academic
-                                    year 2027–28. For JEE Advanced eligibility, the top 2,50,000 unique candidates from
+                                    year 2027–28. For <a href="/jee-advanced/eligibility-criteria"
+                                        style="color: var(--primary); font-weight: 600; text-decoration: underline;">JEE
+                                        Advanced eligibility</a>, the top 2,50,000 unique candidates from
                                     both sessions will qualify.</p>
                             </div>
                         </div>
@@ -2431,8 +2446,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <h3 style="font-size:.95rem;margin-bottom:.75rem;">Previous Year JEE Main Cutoffs (for JEE
-                                Advanced Qualification)</h3>
+                            <h3 style="font-size:.95rem;margin-bottom:.75rem;">Previous Year <a href="/jee-main/cutoff"
+                                    style="color: var(--primary); font-weight: 600; text-decoration: underline;">JEE
+                                    Main Cutoffs</a> (for JEE Advanced Qualification)</h3>
                             <div class="table-scroll">
                                 <table class="styled-table" aria-label="JEE Main cutoff percentile">
                                     <thead>
@@ -2493,6 +2509,25 @@
                         </div>
                     </div>
 
+                    <!-- COLLEGE PREDICTOR CTA CARD -->
+                    <div class="content-cta-card" aria-label="College Predictor Tool">
+                        <div class="cta-card-content">
+                            <div class="cta-badge">FREE TOOL</div>
+                            <h3>JEE Main College Predictor 2027</h3>
+                            <p>Know your admission chances at NITs, IIITs &amp; GFTIs based on your expected or actual
+                                JEE Main percentile/rank and category.</p>
+                            <div class="cta-actions">
+                                <a href="/jee-main-college-predictor" class="btn btn-cta"><i
+                                        class="fas fa-chart-pie"></i> Predict Your College Now</a>
+                                <a href="/jee-main-rank-predictor" class="btn btn-cta-outline"><i
+                                        class="fas fa-calculator"></i> Percentile to Rank Calculator</a>
+                            </div>
+                        </div>
+                        <div class="cta-card-visual">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                    </div>
+
                     <!-- 10. COUNSELLING -->
                     <div class="info-card" id="counselling">
                         <div class="info-card-header">
@@ -2501,8 +2536,12 @@
                         </div>
                         <div class="info-card-body">
                             <p style="font-size:.9rem;color:var(--text-medium);line-height:1.75;margin-bottom:1rem;">JEE
-                                Main qualifiers are eligible to participate in <strong>JoSAA</strong> and
-                                <strong>CSAB</strong> counselling for admission to NITs, IIITs, and GFTIs. State-level
+                                Main qualifiers are eligible to participate in <strong><a href="/josaa-counselling"
+                                        style="color: var(--primary); font-weight: 600; text-decoration: underline;">JoSAA</a></strong>
+                                and
+                                <strong><a href="/csab-counselling"
+                                        style="color: var(--primary); font-weight: 600; text-decoration: underline;">CSAB</a></strong>
+                                counselling for admission to NITs, IIITs, and GFTIs. State-level
                                 counselling is conducted separately by each state for state quota seats.
                             </p>
                             <div class="grid-2" style="margin-bottom:1.25rem;">
@@ -2827,112 +2866,41 @@
                 </div>
                 <!-- END MAIN CONTENT -->
 
-                <!-- SIDEBAR -->
-                <aside>
-                    <div class="toc-card" role="navigation" aria-label="Table of contents">
-                        <div class="toc-header"><i class="fas fa-list"></i>
-                            <h3>Table of Contents</h3>
-                        </div>
-                        <ul class="toc-list">
-                            <li><a href="#overview"><span class="toc-num">1</span>Overview</a></li>
-                            <li><a href="#exam-dates"><span class="toc-num">2</span>Exam Dates 2027</a></li>
-                            <li><a href="#eligibility"><span class="toc-num">3</span>Eligibility Criteria</a></li>
-                            <li><a href="#exam-pattern"><span class="toc-num">4</span>Exam Pattern</a></li>
-                            <li><a href="#marking-scheme"><span class="toc-num">5</span>Marking Scheme</a></li>
-                            <li><a href="#syllabus"><span class="toc-num">6</span>Syllabus 2027</a></li>
-                            <li><a href="#registration"><span class="toc-num">7</span>Registration &amp; Fees</a></li>
-                            <li><a href="#admit-card"><span class="toc-num">8</span>Admit Card</a></li>
-                            <li><a href="#result"><span class="toc-num">9</span>Result &amp; NTA Score</a></li>
-                            <li><a href="#counselling"><span class="toc-num">10</span>Counselling</a></li>
-                            <li><a href="#languages"><span class="toc-num">11</span>Languages &amp; Cities</a></li>
-                            <li><a href="#preparation"><span class="toc-num">12</span>Preparation Tips</a></li>
-                            <li><a href="#faqs"><span class="toc-num">13</span>FAQs</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="sidebar-cta" style="margin-top:1.5rem;">
-                        <i class="fas fa-chart-pie" style="font-size:2rem;opacity:.8;margin-bottom:.75rem;"></i>
-                        <h4>College Predictor</h4>
-                        <p>Know your chances at NITs, IIITs &amp; GFTIs based on your JEE Main rank and category.</p>
-                        <a href="index.html#predictor" class="btn-white"><i class="fas fa-search"></i> Predict Now
-                            (Free)</a>
-                    </div>
-
-                    <div class="sidebar-facts">
-                        <div class="sidebar-facts-header" style="background:linear-gradient(135deg,#0d9488,#0891b2);">
-                            <h3><i class="fas fa-info-circle" style="margin-right:.4rem;"></i>Key Facts 2027</h3>
-                        </div>
-                        <div class="sidebar-facts-body">
-                            <div class="fact-row"><span style="color:var(--text-medium);">Exam Mode</span><strong>CBT
-                                    (Online)</strong></div>
-                            <div class="fact-row"><span style="color:var(--text-medium);">Duration</span><strong>3
-                                    Hours</strong></div>
-                            <div class="fact-row"><span style="color:var(--text-medium);">Total
-                                    Marks</span><strong>300</strong></div>
-                            <div class="fact-row"><span style="color:var(--text-medium);">Questions</span><strong>75
-                                    (out of 90)</strong></div>
-                            <div class="fact-row"><span
-                                    style="color:var(--text-medium);">Languages</span><strong>13</strong></div>
-                            <div class="fact-row"><span style="color:var(--text-medium);">Sessions</span><strong>2 (Jan
-                                    &amp; Apr)</strong></div>
-                            <div class="fact-row"><span style="color:var(--text-medium);">Negative
-                                    Marking</span><strong>–1 (MCQs only)</strong></div>
-                        </div>
-                    </div>
-
-                    <div class="sidebar-links" style="margin-top:1.5rem;">
-                        <div style="background:linear-gradient(135deg,#030f26,#0d2260);padding:1rem 1.2rem;">
-                            <h3 style="color:white;font-size:.92rem;margin:0;"><i class="fas fa-link"
-                                    style="margin-right:.4rem;color:var(--accent);"></i>Quick Links</h3>
-                        </div>
-                        <a href="https://jeemain.nta.nic.in" target="_blank" rel="noopener"><i
-                                class="fas fa-external-link-alt"
-                                style="color:var(--primary);font-size:.75rem;"></i>Official NTA JEE Main Portal</a>
-                        <a href="https://josaa.nic.in" target="_blank" rel="noopener"><i
-                                class="fas fa-external-link-alt"
-                                style="color:var(--primary);font-size:.75rem;"></i>JoSAA Official Portal</a>
-                        <a href="index.html#predictor"><i class="fas fa-chart-line"
-                                style="color:var(--primary);font-size:.75rem;"></i>JEE College Predictor</a>
-                        <a href="index.html#cutoffs"><i class="fas fa-filter"
-                                style="color:var(--primary);font-size:.75rem;"></i>NIT / IIIT Cutoff Explorer</a>
-                    </div>
-                </aside>
-
             </div>
         </div>
     </main>
 
-    <!-- Footer (identical to index.html) -->
+    <!-- Footer -->
     <footer class="site-footer">
         <div class="container">
             <!-- Footer Branding Section -->
             <div class="footer-brand-row"
-                style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:2rem;border-bottom:1px solid var(--border-color);padding-bottom:2.5rem;margin-bottom:3rem;">
-                <div style="max-width:450px;">
+                style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 2rem; border-bottom: 1px solid var(--border-color); padding-bottom: 2.5rem; margin-bottom: 3rem;">
+                <div style="max-width: 450px;">
                     <a href="/" class="nav-logo"
-                        style="color:var(--navy-dark);font-size:1.5rem;margin-bottom:1rem;display:flex;align-items:center;gap:0.75rem;">
-                        <img src="https://jeecounselling.com/logo.png" alt="JEE Counselling Logo" width="32"
-                            height="32">
+                        style="color: var(--navy-dark); font-size: 1.5rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem;">
+                        <img src="https://jeecounselling.com/logo.png" alt="JEE Counselling Logo" width="32" height="32">
                         JEE Counselling
                     </a>
-                    <p style="color:var(--text-medium);font-size:0.9rem;line-height:1.6;">Our free seat
+                    <p style="color: var(--text-medium); font-size: 0.9rem; line-height: 1.6;">Our free seat
                         predictors help engineering aspirants secure target admission possibilities with cutting-edge
                         allocation algorithms.</p>
                 </div>
-                <div style="display:flex;align-items:center;">
+                <div style="display: flex; align-items: center;">
                     <a href="https://whatsapp.com/channel/0029VbDlNBu6LwHdql1GNU0G" target="_blank" rel="noopener"
-                        style="color:white;background:#057568;width:196px;height:40px;border-radius:20px;display:inline-flex;align-items:center;justify-content:center;font-size:0.95rem;font-weight:600;gap:0.5rem;text-decoration:none;"><i
-                            class="fab fa-whatsapp" style="font-size:1.25rem;"></i> Join Channel</a>
+                        style="color: white; background: #057568; width: 196px; height: 40px; border-radius: 20px; display: inline-flex; align-items: center; justify-content: center; font-size: 0.95rem; font-weight: 600; gap: 0.5rem; text-decoration: none;"><i
+                            class="fab fa-whatsapp" style="font-size: 1.25rem;"></i> Join Channel</a>
                 </div>
             </div>
 
             <div class="footer-grid">
-                <!-- JEE Main -->
+
+                <!-- Column 2: State Predictors -->
                 <div class="footer-col">
                     <h4>JEE Main</h4>
                     <ul>
                         <li><a href="/jee-main">JEE Main Exam</a></li>
-                        <li><a href="/jee-main/syllabus">JEE Main Syllabus</a></li>
+                        <li><a href="/jee-main/syllabus">JEE Main Sullabus</a></li>
                         <li><a href="/jee-main/eligibility-criteria">JEE Main Eligibility</a></li>
                         <li><a href="/jee-main/reservation">JEE Main Reservation</a></li>
                         <li><a href="/jee-main/application-form">JEE Main Application</a></li>
@@ -2947,12 +2915,12 @@
                     </ul>
                 </div>
 
-                <!-- JEE Advanced -->
+                <!-- Column 3: Strategic Resources -->
                 <div class="footer-col">
                     <h4>JEE Advanced</h4>
                     <ul>
                         <li><a href="/jee-advanced">JEE Advanced Exam</a></li>
-                        <li><a href="/jee-advanced/syllabus">JEE Advanced Syllabus</a></li>
+                        <li><a href="/jee-advanced/syllabus">JEE Advanced Sullabus</a></li>
                         <li><a href="/jee-advanced/eligibility-criteria">JEE Advanced Eligibility</a></li>
                         <li><a href="/jee-advanced/reservation">JEE Advanced Reservation</a></li>
                         <li><a href="/jee-advanced/application-form">JEE Advanced Application</a></li>
@@ -2961,13 +2929,12 @@
                         <li><a href="/jee-advanced/admit-card">JEE Advanced Admit Card</a></li>
                         <li><a href="/jee-advanced/result">JEE Advanced Result</a></li>
                         <li><a href="/jee-advanced/exam-pattern">JEE Advanced Exam Pattern</a></li>
-                        <li><a href="/jee-advanced/session-2">JEE Advanced Session 2</a></li>
                         <li><a href="/jee-advanced/cutoff">JEE Advanced Cutoff</a></li>
                         <li><a href="/jee-advanced/answer-key">JEE Advanced Answer Key</a></li>
                     </ul>
                 </div>
 
-                <!-- Counselling -->
+                <!-- Column 4: Official Portals -->
                 <div class="footer-col">
                     <h4>Counselling</h4>
                     <ul>
@@ -2980,7 +2947,7 @@
                     </ul>
                 </div>
 
-                <!-- Predictors -->
+                <!-- Column 1: National Predictors -->
                 <div class="footer-col">
                     <h4>Predictors</h4>
                     <ul>
@@ -2995,15 +2962,16 @@
                     </ul>
                 </div>
 
-                <!-- More Resources -->
+                <!-- Column 5: Popular Cutoffs -->
                 <div class="footer-col">
                     <h4>More Resources</h4>
                     <ul>
-                        <li><a href="/updates">News &amp; Updates</a></li>
+                        <li><a href="/updates">News & Updates</a></li>
                         <li><a href="/colleges">Participating Colleges</a></li>
                         <li><a href="/faqs">FAQs</a></li>
                     </ul>
                 </div>
+
             </div>
 
             <div class="footer-bottom">
@@ -3011,7 +2979,7 @@
                 <div class="footer-bottom-links">
                     <a href="/about">About Us</a>
                     <a href="/privacy">Privacy Policy</a>
-                    <a href="/terms">Terms &amp; Conditions</a>
+                    <a href="/terms">Terms & Conditions</a>
                     <a href="/contact">Contact Us</a>
                     <a href="/disclaimer">Disclaimer</a>
                 </div>
@@ -3069,11 +3037,7 @@
         }
 
 
-        // ── Active TOC on scroll ──
-        const sections = document.querySelectorAll('.info-card[id]');
-        const tocLinks = document.querySelectorAll('.toc-list a');
-        const observer = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) { tocLinks.forEach(l => l.classList.remove('active')); const a = document.querySelector(`.toc-list a[href="#${e.target.id}"]`); if (a) a.classList.add('active'); } }); }, { rootMargin: '-20% 0px -60% 0px' });
-        sections.forEach(s => observer.observe(s));
+        // Active TOC on scroll observer removed (sidebar removed)
     </script>
 </body>
 
