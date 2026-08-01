@@ -1,10 +1,10 @@
 /**
- * common.js — Shared Navbar & Footer
+ * common.js ï¿½ Shared Navbar & Footer
  * All pages load this file; it auto-injects the navbar and footer.
  *
  * Required in each HTML page:
- *   1. <div id="site-navbar"></div>  — at the very top of <body>
- *   2. <div id="site-footer"></div>  — just before </body>
+ *   1. <div id="site-navbar"></div>  ï¿½ at the very top of <body>
+ *   2. <div id="site-footer"></div>  ï¿½ just before </body>
  *   3. <script src="/common.js"></script>  (adjust path as needed)
  */
 
@@ -344,6 +344,7 @@ const FOOTER_HTML = `
         <h4>JEE Main</h4>
         <ul>
           <li><a href="/jee-main">JEE Main Exam</a></li>
+          <li><a href="/jee-main/exam-pattern">JEE Main Exam Pattern</a></li>
           <li><a href="/jee-main/syllabus">JEE Main Syllabus</a></li>
           <li><a href="/jee-main/eligibility-criteria">JEE Main Eligibility</a></li>
           <li><a href="/jee-main/reservation">JEE Main Reservation</a></li>
@@ -352,7 +353,6 @@ const FOOTER_HTML = `
           <li><a href="/jee-main/exam-dates">JEE Main Exam Date</a></li>
           <li><a href="/jee-main/admit-card">JEE Main Admit Card</a></li>
           <li><a href="/jee-main/result">JEE Main Result</a></li>
-          <li><a href="/jee-main/exam-pattern">JEE Main Exam Pattern</a></li>
           <li><a href="/jee-main/session-2">JEE Main Session 2</a></li>
           <li><a href="/jee-main/cutoff">JEE Main Cutoff</a></li>
           <li><a href="/jee-main/answer-key">JEE Main Answer Key</a></li>
@@ -363,6 +363,7 @@ const FOOTER_HTML = `
         <h4>JEE Advanced</h4>
         <ul>
           <li><a href="/jee-advanced">JEE Advanced Exam</a></li>
+          <li><a href="/jee-advanced/exam-pattern">JEE Advanced Exam Pattern</a></li>
           <li><a href="/jee-advanced/syllabus">JEE Advanced Syllabus</a></li>
           <li><a href="/jee-advanced/eligibility-criteria">JEE Advanced Eligibility</a></li>
           <li><a href="/jee-advanced/reservation">JEE Advanced Reservation</a></li>
@@ -371,7 +372,6 @@ const FOOTER_HTML = `
           <li><a href="/jee-advanced/exam-dates">JEE Advanced Exam Date</a></li>
           <li><a href="/jee-advanced/admit-card">JEE Advanced Admit Card</a></li>
           <li><a href="/jee-advanced/result">JEE Advanced Result</a></li>
-          <li><a href="/jee-advanced/exam-pattern">JEE Advanced Exam Pattern</a></li>
           <li><a href="/jee-advanced/cutoff">JEE Advanced Cutoff</a></li>
           <li><a href="/jee-advanced/answer-key">JEE Advanced Answer Key</a></li>
         </ul>
