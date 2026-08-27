@@ -241,12 +241,14 @@ const NAVBAR_HTML = `
         </button>
         <div class="nav-dropdown-content">
           <a href="/jee-main">JEE Main Exam</a>
+          <a href="/jee-main/session-2">JEE Main Session 2</a>
           <a href="/jee-main/syllabus">JEE Main Syllabus</a>
           <a href="/jee-main/eligibility-criteria">JEE Main Eligibility</a>
           <a href="/jee-main/application-form">JEE Main Application</a>
           <a href="/jee-main/registration">JEE Main Registration</a>
           <a href="/jee-main/exam-pattern">JEE Main Exam Pattern</a>
           <a href="/jee-main/cutoff">JEE Main Cutoff</a>
+          <a href="/jee-main/answer-key">JEE Main Answer Key</a>
         </div>
       </div>
 
@@ -263,6 +265,7 @@ const NAVBAR_HTML = `
           <a href="/jee-advanced/registration">JEE Advanced Registration</a>
           <a href="/jee-advanced/exam-pattern">JEE Advanced Exam Pattern</a>
           <a href="/jee-advanced/cutoff">JEE Advanced Cutoff</a>
+          <a href="/jee-advanced/answer-key">JEE Advanced Answer Key</a>
         </div>
       </div>
 
