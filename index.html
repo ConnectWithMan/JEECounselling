@@ -23,7 +23,7 @@
     </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>JEE College Predictor & Counselling | JEE 2027</title>
+    <title>JEE Counselling & College Predictor 2027 | JEE 2027</title>
     <meta name="description"
         content="Complete JEE Main & Advanced 2027 admissions guide with college predictor, cutoffs, and counselling updates">
     <meta name="keywords"
@@ -830,6 +830,140 @@
         .live-matcher-result i {
             margin-top: 0.15rem;
             flex-shrink: 0;
+        }
+
+        /* Hero Live Matches Container */
+        .hero-live-matches {
+            background: #f8fafc;
+            border: 1px solid rgba(15, 98, 254, 0.15);
+            border-radius: 14px;
+            padding: 0.9rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .hero-matches-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--navy-dark);
+        }
+
+        .hero-matches-header i {
+            color: var(--primary);
+        }
+
+        .hero-matches-count {
+            background: #eff4ff;
+            color: var(--primary);
+            padding: 0.15rem 0.5rem;
+            border-radius: 20px;
+            font-size: 0.72rem;
+            font-weight: 700;
+        }
+
+        .hero-matches-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.45rem;
+            max-height: 200px;
+            overflow-y: auto;
+            padding-right: 2px;
+        }
+
+        .hero-match-item {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 0.6rem 0.75rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .hero-match-item:hover {
+            border-color: var(--primary);
+            transform: translateX(2px);
+        }
+
+        .hero-match-col-info {
+            min-width: 0;
+            flex: 1;
+        }
+
+        .hero-match-name {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--navy-dark);
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .hero-match-branch {
+            font-size: 0.72rem;
+            color: var(--text-medium);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .hero-match-badge {
+            padding: 0.2rem 0.45rem;
+            border-radius: 20px;
+            font-size: 0.68rem;
+            font-weight: 700;
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .hero-match-badge.safe {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .hero-match-badge.probable {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .hero-match-badge.borderline {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .hero-full-report-btn {
+            background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+            color: white;
+            text-align: center;
+            padding: 0.6rem;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(15, 98, 254, 0.25);
+            transition: var(--transition);
+        }
+
+        .hero-full-report-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(15, 98, 254, 0.35);
+            color: white;
         }
 
         /* Button styling */
@@ -2149,22 +2283,17 @@
                             </div>
                         </div>
 
-                        <!-- Dynamic Estimation Alert -->
-                        <div class="live-matcher-result" id="liveMatcherResult">
-                            <i class="fas fa-lightbulb"></i>
-                            <span id="liveMatcherText">Enter a valid rank to check live probability.</span>
-                        </div>
+
 
                         <!-- Action Button -->
-                        <button type="submit" class="btn-predict">
-                            <span>Check All Matches</span>
+                        <button type="submit" class="btn-predict" id="btnHeroPredict">
+                            <span>Predict My Colleges</span>
                             <i class="fas fa-arrow-right"></i>
                         </button>
                     </form>
                 </div>
             </div>
         </section>
-
 
 
         <!-- College Predictors 2027 Section -->
@@ -2860,14 +2989,97 @@
     // Quick Seat Matcher state and logic
     let activePredictorTab = 'main';
 
+    // Official IIT Benchmark Dataset for Hero Predictor
+    const HERO_IIT_DATA = [
+        { college: "IIT Bombay", nirf: 3, branch: "Computer Science & Engineering", crlCR: 68, femaleCR: 305, obcCR: 45, ewsCR: 18, scCR: 22, stCR: 10 },
+        { college: "IIT Delhi", nirf: 2, branch: "Computer Science & Engineering", crlCR: 116, femaleCR: 430, obcCR: 85, ewsCR: 32, scCR: 45, stCR: 24 },
+        { college: "IIT Madras", nirf: 1, branch: "Computer Science & Engineering", crlCR: 159, femaleCR: 590, obcCR: 98, ewsCR: 42, scCR: 58, stCR: 28 },
+        { college: "IIT Kanpur", nirf: 4, branch: "Computer Science & Engineering", crlCR: 252, femaleCR: 810, obcCR: 145, ewsCR: 68, scCR: 90, stCR: 48 },
+        { college: "IIT Kharagpur", nirf: 6, branch: "Computer Science & Engineering", crlCR: 415, femaleCR: 1250, obcCR: 230, ewsCR: 105, scCR: 140, stCR: 72 },
+        { college: "IIT Roorkee", nirf: 5, branch: "Data Science & AI", crlCR: 750, femaleCR: 1900, obcCR: 420, ewsCR: 190, scCR: 260, stCR: 135 },
+        { college: "IIT Guwahati", nirf: 7, branch: "Data Science & AI", crlCR: 1000, femaleCR: 2400, obcCR: 550, ewsCR: 250, scCR: 330, stCR: 170 },
+        { college: "IIT Hyderabad", nirf: 8, branch: "Artificial Intelligence", crlCR: 900, femaleCR: 2200, obcCR: 490, ewsCR: 225, scCR: 300, stCR: 155 },
+        { college: "IIT Bombay", nirf: 3, branch: "Electrical Engineering", crlCR: 464, femaleCR: 1250, obcCR: 280, ewsCR: 120, scCR: 150, stCR: 85 },
+        { college: "IIT Delhi", nirf: 2, branch: "Electrical Engineering", crlCR: 580, femaleCR: 1550, obcCR: 360, ewsCR: 155, scCR: 210, stCR: 115 },
+        { college: "IIT Madras", nirf: 1, branch: "Electrical Engineering", crlCR: 960, femaleCR: 2200, obcCR: 540, ewsCR: 240, scCR: 320, stCR: 170 },
+        { college: "IIT (BHU) Varanasi", nirf: 10, branch: "Computer Science & Engineering", crlCR: 1070, femaleCR: 2750, obcCR: 580, ewsCR: 265, scCR: 360, stCR: 185 },
+        { college: "IIT Indore", nirf: 16, branch: "Computer Science & Engineering", crlCR: 1350, femaleCR: 3200, obcCR: 720, ewsCR: 330, scCR: 440, stCR: 225 },
+        { college: "IIT Gandhinagar", nirf: 18, branch: "Computer Science & Engineering", crlCR: 1550, femaleCR: 3600, obcCR: 820, ewsCR: 380, scCR: 500, stCR: 255 },
+        { college: "IIT Ropar", nirf: 22, branch: "Computer Science & Engineering", crlCR: 1950, femaleCR: 4400, obcCR: 1020, ewsCR: 460, scCR: 620, stCR: 315 },
+        { college: "IIT Patna", nirf: 34, branch: "Artificial Intelligence & Data Science", crlCR: 3150, femaleCR: 6400, obcCR: 1620, ewsCR: 720, scCR: 970, stCR: 490 },
+        { college: "IIT (ISM) Dhanbad", nirf: 15, branch: "Computer Science & Engineering", crlCR: 3100, femaleCR: 6400, obcCR: 1550, ewsCR: 690, scCR: 940, stCR: 475 },
+        { college: "IIT Mandi", nirf: 33, branch: "Data Science & Engineering", crlCR: 3800, femaleCR: 7300, obcCR: 1900, ewsCR: 860, scCR: 1150, stCR: 580 },
+        { college: "IIT Jodhpur", nirf: 30, branch: "Artificial Intelligence & Data Science", crlCR: 3400, femaleCR: 6800, obcCR: 1720, ewsCR: 770, scCR: 1030, stCR: 520 },
+        { college: "IIT Tirupati", nirf: 59, branch: "Computer Science & Engineering", crlCR: 4700, femaleCR: 8600, obcCR: 2350, ewsCR: 1080, scCR: 1350, stCR: 680 },
+        { college: "IIT Palakkad", nirf: 64, branch: "Computer Science & Engineering", crlCR: 5150, femaleCR: 9200, obcCR: 2580, ewsCR: 1160, scCR: 1480, stCR: 740 },
+        { college: "IIT Goa", nirf: 90, branch: "Computer Science & Engineering", crlCR: 4800, femaleCR: 8800, obcCR: 2400, ewsCR: 1100, scCR: 1380, stCR: 690 },
+        { college: "IIT Dharwad", nirf: 93, branch: "Computer Science & Engineering", crlCR: 5700, femaleCR: 9800, obcCR: 2800, ewsCR: 1280, scCR: 1620, stCR: 810 },
+        { college: "IIT Bhilai", nirf: 81, branch: "Computer Science & Engineering", crlCR: 5900, femaleCR: 10100, obcCR: 2900, ewsCR: 1340, scCR: 1680, stCR: 840 },
+        { college: "IIT Jammu", nirf: 67, branch: "Computer Science & Engineering", crlCR: 5950, femaleCR: 10200, obcCR: 2920, ewsCR: 1350, scCR: 1690, stCR: 845 },
+        { college: "IIT Bombay", nirf: 3, branch: "Mechanical Engineering", crlCR: 1750, femaleCR: 3800, obcCR: 850, ewsCR: 380, scCR: 490, stCR: 260 },
+        { college: "IIT Delhi", nirf: 2, branch: "Mechanical Engineering", crlCR: 1850, femaleCR: 4200, obcCR: 920, ewsCR: 410, scCR: 540, stCR: 290 },
+        { college: "IIT Madras", nirf: 1, branch: "Mechanical Engineering", crlCR: 2500, femaleCR: 5400, obcCR: 1250, ewsCR: 560, scCR: 720, stCR: 380 },
+        { college: "IIT Kharagpur", nirf: 6, branch: "Mechanical Engineering", crlCR: 3500, femaleCR: 6900, obcCR: 1750, ewsCR: 780, scCR: 1020, stCR: 520 },
+        { college: "IIT Roorkee", nirf: 5, branch: "Mechanical Engineering", crlCR: 3900, femaleCR: 7400, obcCR: 1950, ewsCR: 880, scCR: 1150, stCR: 590 },
+        { college: "IIT Bombay", nirf: 3, branch: "Civil Engineering", crlCR: 4300, femaleCR: 7800, obcCR: 1950, ewsCR: 890, scCR: 1150, stCR: 510 },
+        { college: "IIT Delhi", nirf: 2, branch: "Civil Engineering", crlCR: 4400, femaleCR: 8100, obcCR: 2050, ewsCR: 940, scCR: 1200, stCR: 540 },
+        { college: "IIT Madras", nirf: 1, branch: "Civil Engineering", crlCR: 5300, femaleCR: 8800, obcCR: 2400, ewsCR: 1150, scCR: 1420, stCR: 680 },
+        { college: "IIT Ropar", nirf: 22, branch: "Electrical Engineering", crlCR: 5400, femaleCR: 9400, obcCR: 2650, ewsCR: 1220, scCR: 1550, stCR: 780 },
+        { college: "IIT Patna", nirf: 34, branch: "Electrical & Electronics Engineering", crlCR: 6300, femaleCR: 10400, obcCR: 3100, ewsCR: 1420, scCR: 1780, stCR: 885 },
+        { college: "IIT Tirupati", nirf: 59, branch: "Electrical Engineering", crlCR: 8600, femaleCR: 13100, obcCR: 3900, ewsCR: 1900, scCR: 2220, stCR: 1070 },
+        { college: "IIT Jammu", nirf: 67, branch: "Electrical Engineering", crlCR: 10900, femaleCR: 15400, obcCR: 4680, ewsCR: 2340, scCR: 2680, stCR: 1280 }
+    ];
+
+    // Official NIT/IIIT/GFTI Benchmark Dataset for Hero Predictor
+    const HERO_MAIN_DATA = [
+        { college: "NIT Trichy", state: "Tamil Nadu", type: "NIT", nirf: 9, branch: "Computer Science & Engineering", quota: "OS", crlCR: 1500, femaleCR: 2800, obcCR: 420, ewsCR: 210, scCR: 180, stCR: 90 },
+        { college: "NIT Trichy", state: "Tamil Nadu", type: "NIT", nirf: 9, branch: "Computer Science & Engineering", quota: "HS", crlCR: 4800, femaleCR: 7200, obcCR: 1300, ewsCR: 620, scCR: 580, stCR: 290 },
+        { college: "NIT Surathkal", state: "Karnataka", type: "NIT", nirf: 12, branch: "Computer Science & Engineering", quota: "OS", crlCR: 2300, femaleCR: 3800, obcCR: 680, ewsCR: 320, scCR: 280, stCR: 140 },
+        { college: "NIT Surathkal", state: "Karnataka", type: "NIT", nirf: 12, branch: "Information Technology", quota: "OS", crlCR: 3400, femaleCR: 5200, obcCR: 980, ewsCR: 460, scCR: 410, stCR: 210 },
+        { college: "NIT Warangal", state: "Telangana", type: "NIT", nirf: 21, branch: "Computer Science & Engineering", quota: "OS", crlCR: 2900, femaleCR: 4600, obcCR: 860, ewsCR: 410, scCR: 370, stCR: 185 },
+        { college: "NIT Rourkela", state: "Odisha", type: "NIT", nirf: 16, branch: "Computer Science & Engineering", quota: "OS", crlCR: 3700, femaleCR: 5800, obcCR: 1100, ewsCR: 530, scCR: 470, stCR: 235 },
+        { college: "MNNIT Allahabad", state: "Uttar Pradesh", type: "NIT", nirf: 42, branch: "Computer Science & Engineering", quota: "OS", crlCR: 4700, femaleCR: 7500, obcCR: 1400, ewsCR: 680, scCR: 600, stCR: 300 },
+        { college: "MNNIT Allahabad", state: "Uttar Pradesh", type: "NIT", nirf: 42, branch: "Computer Science & Engineering", quota: "HS", crlCR: 6200, femaleCR: 9800, obcCR: 1880, ewsCR: 910, scCR: 800, stCR: 400 },
+        { college: "NIT Calicut", state: "Kerala", type: "NIT", nirf: 23, branch: "Computer Science & Engineering", quota: "OS", crlCR: 4900, femaleCR: 7800, obcCR: 1450, ewsCR: 700, scCR: 620, stCR: 310 },
+        { college: "MNIT Jaipur", state: "Rajasthan", type: "NIT", nirf: 35, branch: "Computer Science & Engineering", quota: "OS", crlCR: 5600, femaleCR: 8900, obcCR: 1680, ewsCR: 810, scCR: 720, stCR: 360 },
+        { college: "MNIT Jaipur", state: "Rajasthan", type: "NIT", nirf: 35, branch: "Computer Science & Engineering", quota: "HS", crlCR: 6100, femaleCR: 9400, obcCR: 1850, ewsCR: 890, scCR: 780, stCR: 390 },
+        { college: "MNIT Jaipur", state: "Rajasthan", type: "NIT", nirf: 35, branch: "Electronics & Communication", quota: "HS", crlCR: 11200, femaleCR: 16800, obcCR: 3400, ewsCR: 1650, scCR: 1420, stCR: 710 },
+        { college: "VNIT Nagpur", state: "Maharashtra", type: "NIT", nirf: 39, branch: "Computer Science & Engineering", quota: "OS", crlCR: 6800, femaleCR: 10500, obcCR: 2050, ewsCR: 990, scCR: 870, stCR: 435 },
+        { college: "VNIT Nagpur", state: "Maharashtra", type: "NIT", nirf: 39, branch: "Computer Science & Engineering", quota: "HS", crlCR: 8900, femaleCR: 13800, obcCR: 2700, ewsCR: 1300, scCR: 1150, stCR: 575 },
+        { college: "NIT Kurukshetra", state: "Haryana", type: "NIT", nirf: 58, branch: "Computer Science & Engineering", quota: "OS", crlCR: 7900, femaleCR: 12500, obcCR: 2400, ewsCR: 1160, scCR: 1020, stCR: 510 },
+        { college: "NIT Delhi", state: "Delhi", type: "NIT", nirf: 51, branch: "Computer Science & Engineering", quota: "OS", crlCR: 8400, femaleCR: 13200, obcCR: 2550, ewsCR: 1240, scCR: 1080, stCR: 540 },
+        { college: "NIT Delhi", state: "Delhi", type: "NIT", nirf: 51, branch: "Computer Science & Engineering", quota: "HS", crlCR: 12800, femaleCR: 19400, obcCR: 3900, ewsCR: 1900, scCR: 1650, stCR: 825 },
+        { college: "NIT Durgapur", state: "West Bengal", type: "NIT", nirf: 43, branch: "Computer Science & Engineering", quota: "OS", crlCR: 9800, femaleCR: 15400, obcCR: 3000, ewsCR: 1450, scCR: 1280, stCR: 640 },
+        { college: "NIT Jalandhar", state: "Punjab", type: "NIT", nirf: 46, branch: "Computer Science & Engineering", quota: "OS", crlCR: 11200, femaleCR: 17500, obcCR: 3400, ewsCR: 1680, scCR: 1480, stCR: 740 },
+        { college: "NIT Silchar", state: "Assam", type: "NIT", nirf: 40, branch: "Computer Science & Engineering", quota: "OS", crlCR: 12900, femaleCR: 20000, obcCR: 3900, ewsCR: 1900, scCR: 1680, stCR: 840 },
+        { college: "NIT Patna", state: "Bihar", type: "NIT", nirf: 55, branch: "Computer Science & Engineering", quota: "OS", crlCR: 13900, femaleCR: 21500, obcCR: 4200, ewsCR: 2050, scCR: 1820, stCR: 910 },
+        { college: "NIT Raipur", state: "Chhattisgarh", type: "NIT", nirf: 70, branch: "Computer Science & Engineering", quota: "OS", crlCR: 13800, femaleCR: 21200, obcCR: 4200, ewsCR: 2050, scCR: 1820, stCR: 910 },
+        { college: "IIIT Allahabad", state: "Uttar Pradesh", type: "IIIT", nirf: 87, branch: "Information Technology (IT)", quota: "AI", crlCR: 5900, femaleCR: 9200, obcCR: 1800, ewsCR: 870, scCR: 760, stCR: 380 },
+        { college: "ABV-IIITM Gwalior", state: "Madhya Pradesh", type: "IIIT", nirf: 88, branch: "Computer Science & Engineering", quota: "AI", crlCR: 7800, femaleCR: 12400, obcCR: 2400, ewsCR: 1160, scCR: 1020, stCR: 510 },
+        { college: "IIIT Lucknow", state: "Uttar Pradesh", type: "IIIT", nirf: 100, branch: "Computer Science & Engineering", quota: "AI", crlCR: 9400, femaleCR: 14800, obcCR: 2900, ewsCR: 1400, scCR: 1230, stCR: 615 },
+        { college: "IIITDM Jabalpur", state: "Madhya Pradesh", type: "IIIT", nirf: 97, branch: "Computer Science & Engineering", quota: "AI", crlCR: 13900, femaleCR: 21500, obcCR: 4250, ewsCR: 2080, scCR: 1820, stCR: 910 },
+        { college: "IIIT Pune", state: "Maharashtra", type: "IIIT", nirf: 110, branch: "Computer Science & Engineering", quota: "AI", crlCR: 16800, femaleCR: 25800, obcCR: 5150, ewsCR: 2550, scCR: 2220, stCR: 1110 },
+        { college: "IIIT Kota", state: "Rajasthan", type: "IIIT", nirf: 120, branch: "Computer Science & Engineering", quota: "AI", crlCR: 21500, femaleCR: 32000, obcCR: 6700, ewsCR: 3300, scCR: 2850, stCR: 1425 },
+        { college: "IIIT Sri City", state: "Andhra Pradesh", type: "IIIT", nirf: 130, branch: "Computer Science & Engineering", quota: "AI", crlCR: 24500, femaleCR: 36500, obcCR: 7650, ewsCR: 3750, scCR: 3250, stCR: 1625 },
+        { college: "PEC Chandigarh", state: "Punjab", type: "GFTI", nirf: 101, branch: "Computer Science & Engineering", quota: "OS", crlCR: 12400, femaleCR: 19200, obcCR: 3800, ewsCR: 1850, scCR: 1620, stCR: 810 },
+        { college: "BIT Mesra", state: "Jharkhand", type: "GFTI", nirf: 53, branch: "Computer Science & Engineering", quota: "AI", crlCR: 16500, femaleCR: 25500, obcCR: 5100, ewsCR: 2500, scCR: 2200, stCR: 1100 },
+        { college: "IIEST Shibpur", state: "West Bengal", type: "GFTI", nirf: 35, branch: "Computer Science & Technology", quota: "OS", crlCR: 14200, femaleCR: 22000, obcCR: 4350, ewsCR: 2120, scCR: 1860, stCR: 930 },
+        { college: "NIT Trichy", state: "Tamil Nadu", type: "NIT", nirf: 9, branch: "Mechanical Engineering", quota: "OS", crlCR: 10200, femaleCR: 16800, obcCR: 3200, ewsCR: 1550, scCR: 1400, stCR: 710 },
+        { college: "NIT Surathkal", state: "Karnataka", type: "NIT", nirf: 12, branch: "Mechanical Engineering", quota: "OS", crlCR: 13400, femaleCR: 21000, obcCR: 4150, ewsCR: 2050, scCR: 1850, stCR: 920 },
+        { college: "MNIT Jaipur", state: "Rajasthan", type: "NIT", nirf: 35, branch: "Mechanical Engineering", quota: "OS", crlCR: 21000, femaleCR: 31500, obcCR: 6500, ewsCR: 3200, scCR: 2750, stCR: 1375 },
+        { college: "VNIT Nagpur", state: "Maharashtra", type: "NIT", nirf: 39, branch: "Mechanical Engineering", quota: "OS", crlCR: 23500, femaleCR: 34000, obcCR: 7200, ewsCR: 3550, scCR: 3050, stCR: 1525 },
+        { college: "NIT Rourkela", state: "Odisha", type: "NIT", nirf: 16, branch: "Civil Engineering", quota: "OS", crlCR: 27900, femaleCR: 39500, obcCR: 8700, ewsCR: 4300, scCR: 3700, stCR: 1850 },
+        { college: "MNIT Jaipur", state: "Rajasthan", type: "NIT", nirf: 35, branch: "Civil Engineering", quota: "OS", crlCR: 31500, femaleCR: 44000, obcCR: 9800, ewsCR: 4800, scCR: 4100, stCR: 2050 },
+        { college: "NIT Raipur", state: "Chhattisgarh", type: "NIT", nirf: 70, branch: "Mechanical Engineering", quota: "OS", crlCR: 32000, femaleCR: 46000, obcCR: 10100, ewsCR: 5050, scCR: 4300, stCR: 2150 },
+        { college: "NIT Silchar", state: "Assam", type: "NIT", nirf: 40, branch: "Mechanical Engineering", quota: "OS", crlCR: 33500, femaleCR: 47500, obcCR: 10500, ewsCR: 5250, scCR: 4500, stCR: 2250 }
+    ];
+
     function switchPredictorTab(tab) {
         activePredictorTab = tab;
 
-        // Update tabs active state
         document.getElementById('tabJeeMain').classList.toggle('active', tab === 'main');
         document.getElementById('tabJeeAdv').classList.toggle('active', tab === 'advanced');
 
-        // Update labels and fields
         const rankLabel = document.getElementById('rankLabel');
         const crlInput = document.getElementById('crlRank');
         const stateGroup = document.getElementById('stateFormGroup');
@@ -2882,55 +3094,94 @@
             stateGroup.style.display = 'none';
         }
 
-        // Re-estimate probabilities
         runLiveChancesEstimator();
     }
 
-    function runLiveChancesEstimator() {
+    function calculateHeroMatches() {
         const rankVal = parseInt(document.getElementById('crlRank').value);
         const categoryVal = document.getElementById('crlCategory').value;
         const genderVal = document.getElementById('crlGender').value;
         const stateVal = document.getElementById('crlState').value;
-        const resultPanel = document.getElementById('liveMatcherResult');
-        const resultText = document.getElementById('liveMatcherText');
 
-        if (isNaN(rankVal) || rankVal <= 0) {
-            resultPanel.style.display = 'none';
-            return;
-        }
+        if (isNaN(rankVal) || rankVal <= 0) return { matches: [], total: 0, safe: 0, probable: 0 };
 
-        resultPanel.style.display = 'flex';
-        resultPanel.className = 'live-matcher-result'; // reset classes
+        const dataset = activePredictorTab === 'main' ? HERO_MAIN_DATA : HERO_IIT_DATA;
+        const matches = [];
 
-        // Simple mock calculations based on standard cutoffs
-        if (activePredictorTab === 'main') {
-            if (rankVal <= 8000) {
-                resultPanel.classList.add('info');
-                resultText.innerHTML = `ðŸ”¥ <strong>Excellent Rank!</strong> 99% chance for Top NIT CS/IT (Trichy, Surathkal, Rourkela) and top IIITs.`;
-            } else if (rankVal <= 25000) {
-                resultText.innerHTML = `âœ¨ <strong>Very High Chances!</strong> Probable CS/ECE branches in mid-tier NITs and premium IIITs (Allahabad, Gwalior).`;
-            } else if (rankVal <= 60000) {
-                resultPanel.classList.add('warning');
-                resultText.innerHTML = `ðŸ‘ <strong>Good Chances!</strong> Probable core branches in NITs, or premium core/CS branches in state level options.`;
-            } else {
-                resultPanel.classList.add('warning');
-                resultText.innerHTML = `âœ… <strong>Moderate Chances:</strong> Highly probable matches in newer NITs/IIITs and Top GFTIs. Try state-specific rounds.`;
+        dataset.forEach(item => {
+            if (activePredictorTab === 'main') {
+                if (item.quota === 'HS') {
+                    if (stateVal === 'All' || stateVal.toLowerCase() !== item.state.toLowerCase()) {
+                        return;
+                    }
+                } else if (item.quota === 'OS') {
+                    if (stateVal !== 'All' && stateVal.toLowerCase() === item.state.toLowerCase()) {
+                        return;
+                    }
+                }
             }
-        } else {
-            // Advanced
-            if (rankVal <= 1500) {
-                resultPanel.classList.add('info');
-                resultText.innerHTML = `ðŸ”¥ <strong>Superb Rank!</strong> Sure seat in Top 5 IITs (Bombay, Delhi, Madras) in premium core branches.`;
-            } else if (rankVal <= 6000) {
-                resultText.innerHTML = `âœ¨ <strong>Strong Chance!</strong> Highly probable matches in top 10 IITs (Kharagpur, Roorkee, Guwahati) across core & circuital branches.`;
-            } else if (rankVal <= 12000) {
-                resultPanel.classList.add('warning');
-                resultText.innerHTML = `ðŸ‘ <strong>Eligible!</strong> Highly probable newer IITs (Ropar, Mandi, Jammu) or popular integrated dual degrees in older IITs.`;
+
+            let cutoff = item.crlCR;
+            if (categoryVal === 'OPEN') {
+                cutoff = genderVal === 'Female-Only' ? item.femaleCR : item.crlCR;
             } else {
-                resultPanel.classList.add('warning');
-                resultText.innerHTML = `ðŸ” <strong>Challenging/Niche:</strong> High chances in specialized core courses and newer dual degrees. Check previous year closing trends.`;
+                let mult = 1;
+                if (categoryVal === 'OBC-NCL') mult = 3.6;
+                else if (categoryVal === 'EWS') mult = 3.2;
+                else if (categoryVal === 'SC') mult = 6.4;
+                else if (categoryVal === 'ST') mult = 8.5;
+
+                cutoff = Math.round((genderVal === 'Female-Only' ? item.femaleCR : item.crlCR) * mult);
             }
-        }
+
+            const ratio = rankVal / cutoff;
+            let prob = 0;
+            let tier = 'REACH';
+
+            if (ratio <= 0.85) {
+                prob = Math.min(99, Math.round(95 + (1 - ratio) * 15));
+                tier = 'SAFE';
+            } else if (ratio <= 1.0) {
+                prob = Math.round(75 + (1 - ratio) * 130);
+                tier = 'SAFE';
+            } else if (ratio <= 1.15) {
+                prob = Math.round(50 + (1.15 - ratio) * 160);
+                tier = 'PROBABLE';
+            } else if (ratio <= 1.35) {
+                prob = Math.round(25 + (1.35 - ratio) * 125);
+                tier = 'BORDERLINE';
+            } else {
+                prob = Math.max(5, Math.round(20 - (ratio - 1.35) * 25));
+                tier = 'REACH';
+            }
+
+            matches.push({
+                college: item.college,
+                branch: item.branch,
+                type: item.type || 'IIT',
+                quota: item.quota || 'AI',
+                nirf: item.nirf,
+                cutoff: cutoff,
+                prob: prob,
+                tier: tier
+            });
+        });
+
+        matches.sort((a, b) => b.prob - a.prob);
+
+        const safeCount = matches.filter(m => m.tier === 'SAFE').length;
+        const probableCount = matches.filter(m => m.tier === 'PROBABLE').length;
+
+        return {
+            matches: matches,
+            total: matches.length,
+            safe: safeCount,
+            probable: probableCount
+        };
+    }
+
+    function runLiveChancesEstimator() {
+        // No-op: results are shown only on the dedicated predictor pages.
     }
 
     function handleQuickPrediction(e) {
@@ -2940,13 +3191,19 @@
         const genderVal = document.getElementById('crlGender').value;
         const stateVal = document.getElementById('crlState').value;
 
-        let targetUrl = activePredictorTab === 'main' ? '/jee-main-college-predictor' : '/jee-advanced-college-predictor';
+        if (!rankVal || parseInt(rankVal) <= 0) {
+            alert('Please enter your rank number to predict.');
+            document.getElementById('crlRank').focus();
+            return;
+        }
+
+        let targetUrl = activePredictorTab === 'main'
+            ? '/jee-main-college-predictor.html'
+            : '/jee-advanced-college-predictor.html';
         targetUrl += `?rank=${rankVal}&category=${categoryVal}&gender=${genderVal}`;
         if (activePredictorTab === 'main' && stateVal !== 'All') {
             targetUrl += `&state=${stateVal}`;
         }
-
-        // Redirect to detailed predictor page
         window.location.href = targetUrl;
     }
 
