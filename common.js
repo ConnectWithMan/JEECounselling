@@ -241,6 +241,7 @@ const NAVBAR_HTML = `
         </button>
         <div class="nav-dropdown-content">
           <a href="/jee-main">JEE Main Exam</a>
+          <a href="/jee-main/counselling">JEE Main Counselling</a>
           <a href="/jee-main/session-2">JEE Main Session 2</a>
           <a href="/jee-main/syllabus">JEE Main Syllabus</a>
           <a href="/jee-main/eligibility-criteria">JEE Main Eligibility</a>
@@ -259,6 +260,7 @@ const NAVBAR_HTML = `
         </button>
         <div class="nav-dropdown-content">
           <a href="/jee-advanced">JEE Advanced Exam</a>
+          <a href="/jee-advanced/counselling">JEE Advanced Counselling</a>
           <a href="/jee-advanced/syllabus">JEE Advanced Syllabus</a>
           <a href="/jee-advanced/eligibility-criteria">JEE Advanced Eligibility</a>
           <a href="/jee-advanced/application-form">JEE Advanced Application</a>
@@ -296,6 +298,8 @@ const NAVBAR_HTML = `
           <a href="/jee-main-percentile-predictor">Jee Main Percentile Predictor</a>
           <a href="/jee-advanced-college-predictor">Jee Advanced College Predictor</a>
           <a href="/jee-advanced-rank-predictor">Jee Advanced Rank Predictor</a>
+          <a href="/csab-college-predictor">CSAB College Predictor</a>
+          <a href="/dasa-college-predictor">DASA College Predictor</a>
         </div>
       </div>
 
@@ -305,7 +309,7 @@ const NAVBAR_HTML = `
           Resources <i class="fas fa-chevron-down dropdown-arrow"></i>
         </button>
         <div class="nav-dropdown-content">
-          <a href="/news">News &amp; Updates</a>
+          <a href="/updates">News &amp; Updates</a>
           <a href="/colleges">Participating Colleges</a>
           <a href="/faqs">FAQs</a>
         </div>
@@ -347,6 +351,7 @@ const FOOTER_HTML = `
         <h4>JEE Main</h4>
         <ul>
           <li><a href="/jee-main">JEE Main Exam</a></li>
+          <li><a href="/jee-main/counselling">JEE Main Counselling</a></li>
           <li><a href="/jee-main/exam-pattern">JEE Main Exam Pattern</a></li>
           <li><a href="/jee-main/syllabus">JEE Main Syllabus</a></li>
           <li><a href="/jee-main/eligibility-criteria">JEE Main Eligibility</a></li>
@@ -366,6 +371,7 @@ const FOOTER_HTML = `
         <h4>JEE Advanced</h4>
         <ul>
           <li><a href="/jee-advanced">JEE Advanced Exam</a></li>
+          <li><a href="/jee-advanced/counselling">JEE Advanced Counselling</a></li>
           <li><a href="/jee-advanced/exam-pattern">JEE Advanced Exam Pattern</a></li>
           <li><a href="/jee-advanced/syllabus">JEE Advanced Syllabus</a></li>
           <li><a href="/jee-advanced/eligibility-criteria">JEE Advanced Eligibility</a></li>
@@ -409,7 +415,7 @@ const FOOTER_HTML = `
       <div class="footer-col">
         <h4>More Resources</h4>
         <ul>
-          <li><a href="/news">News &amp; Updates</a></li>
+          <li><a href="/updates">News &amp; Updates</a></li>
           <li><a href="/colleges">Participating Colleges</a></li>
           <li><a href="/faqs">FAQs</a></li>
         </ul>
