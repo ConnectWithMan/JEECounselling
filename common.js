@@ -309,7 +309,7 @@ const NAVBAR_HTML = `
           Resources <i class="fas fa-chevron-down dropdown-arrow"></i>
         </button>
         <div class="nav-dropdown-content">
-          <a href="/updates">News &amp; Updates</a>
+          <a href="/news">News &amp; Updates</a>
           <a href="/colleges">Participating Colleges</a>
           <a href="/faqs">FAQs</a>
         </div>
@@ -415,7 +415,7 @@ const FOOTER_HTML = `
       <div class="footer-col">
         <h4>More Resources</h4>
         <ul>
-          <li><a href="/updates">News &amp; Updates</a></li>
+          <li><a href="/news">JEE 2027 News</a></li>
           <li><a href="/colleges">Participating Colleges</a></li>
           <li><a href="/faqs">FAQs</a></li>
         </ul>
